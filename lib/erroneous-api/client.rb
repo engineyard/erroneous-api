@@ -7,12 +7,16 @@ module ErroneousAPI
       @base_url = base_url
     end
 
-    def mock!(backend)
-      self.connection.backend = backend
+    class << self
+      attr_accessor :mock_backend
+    end
+
+    def self.mock!(backend)
+      @mock_backend = backend
     end
 
     def connection
-      @connection ||= EY::ApiHMAC::BaseConnection.new
+      @connection ||= setup_connection
     end
 
     def parse_deploy_fail(text)
@@ -29,5 +33,16 @@ module ErroneousAPI
         @details = json_response['details']
       end
     end
+
+    private
+
+    def setup_connection
+      connection = EY::ApiHMAC::BaseConnection.new
+      if Client.mock_backend
+        connection.backend = Client.mock_backend
+      end
+      connection
+    end
+
   end
 end

@@ -21,7 +21,7 @@ describe "Erroneous API basic use case" do
     end
 
     @client = ErroneousAPI::Client.new(ERRONEOUS_HOST)
-    @client.mock!(app)
+    ErroneousAPI::Client.mock!(app)
 
     text = "Deploy initiated.\nRunning command BLAH.\nDoing This.\nERROR! ERROR! HORRIBLE TERRIBLE THINGS!\n" +
            "[Relax] Your site is still running old code and nothing destructive has occurred."
