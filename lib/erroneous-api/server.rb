@@ -25,7 +25,7 @@ module ErroneousAPI
         content_type :json
         result = ErroneousAPI::Server.mapper.parse_deploy_fail(deployment_log, deployment_id)
         {
-          :lines => (result[:lines] or raise "Expected parse_deploy_fail to return which :lines (empty array allowed)").to_a,
+          :lines => (result[:lines] or raise "Expected parse_deploy_fail to return which :lines (empty array allowed)"),
           :details => (result[:details] or raise "Expected parse_deploy_fail to return the :details (empty string allowed)"),
           :summary => (result[:summary] or raise "Expected parse_deploy_fail to return the :summary (empty string allowed)")
         }.to_json
