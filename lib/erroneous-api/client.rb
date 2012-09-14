@@ -19,8 +19,8 @@ module ErroneousAPI
       @connection ||= setup_connection
     end
 
-    def parse_deploy_fail(text)
-      connection.post(URI.join(@base_url, '/parse_deploy_fail').to_s, {:deploy_log => text}) do |json_response, location_header|
+    def parse_deploy_fail(text, deployment_id)
+      connection.post(URI.join(@base_url, '/parse_deploy_fail').to_s, {:deployment_log => text, :deployment_id => deployment_id}) do |json_response, location_header|
         Response.new(json_response)
       end
     end

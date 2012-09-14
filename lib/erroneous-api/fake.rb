@@ -1,6 +1,6 @@
 module ErroneousAPI
   class Fake
-    def self.parse_deploy_fail(log_text)
+    def self.parse_deploy_fail(log_text, deploy_id)
       lines = log_text.split("\n")
       bad_line = lines.detect{|l| l.match(/ERROR/)}
       {

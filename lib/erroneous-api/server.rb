@@ -19,9 +19,11 @@ module ErroneousAPI
 
     post '/parse_deploy_fail' do
       begin
-        deploy_log = JSON.parse(request.body.read)["deploy_log"]
+        body = request.body.read
+        deployment_log = JSON.parse(body)["deployment_log"]
+        deployment_id = JSON.parse(body)["deployment_id"]
         content_type :json
-        result = ErroneousAPI::Server.mapper.parse_deploy_fail(deploy_log)
+        result = ErroneousAPI::Server.mapper.parse_deploy_fail(deployment_log, deployment_id)
         {
           :lines => (result[:lines] or raise "Expected parse_deploy_fail to return which :lines (empty array allowed)").to_a,
           :details => (result[:details] or raise "Expected parse_deploy_fail to return the :details (empty string allowed)"),
