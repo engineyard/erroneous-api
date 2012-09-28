@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    erroneous-api (0.0.3)
+    erroneous-api (0.0.5)
       ey_api_hmac
       json
 

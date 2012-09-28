@@ -27,7 +27,7 @@ module MyMapper
         :summary => 'bundle failed!',
         :details => 'Deploy failed because of bundler. Please rebundle the app.',
         # we use this to anchor to the right part in the log.
-        :lines => [2..5].to_a,
+        :lines => (2..5).to_a,
       }
     end
   end
